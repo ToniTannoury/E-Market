@@ -68,4 +68,8 @@ class User extends Authenticatable implements JWTSubject
     public function products(){
         return $this->hasMany(Product::class);
     }
+    public function favoritedByUser()
+    {
+        return $this->belongsToMany(Product::class, 'favorites')->withTimestamps();
+    }
 }

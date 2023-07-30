@@ -10,4 +10,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
     Route::apiResource("products" , ProductController::class);
+    Route::apiResource("favorites" , FavoriteController::class);
+
 });
