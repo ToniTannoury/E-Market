@@ -19,7 +19,7 @@ if (decodedToken) {
 
   dataArray.forEach((item) => {
     const cardContainer = document.createElement("div");
-    cardContainer.classList.add("cardContainer"); // Add class for the container
+    cardContainer.classList.add("cardContainer"); 
 
     const card = document.createElement("div");
     card.classList.add("card");
@@ -54,6 +54,14 @@ if (decodedToken) {
     starIcon.setAttribute("data-product-id", item.id); 
     starIcon.addEventListener("click", () => handleStarClick(userId, item.id, starIcon)); 
     infoSection.appendChild(starIcon);
+
+    const cartIcon = document.createElement("i");
+  cartIcon.classList.add("fas", "fa-shopping-cart");
+  cartIcon.setAttribute("data-product-id", item.id);
+  cartIcon.addEventListener("click", () => handleCartIconClick(item));
+
+  
+  infoSection.appendChild(cartIcon);
 
     card.appendChild(infoSection);
     card.addEventListener("mouseenter", handleCardHover); 
@@ -140,15 +148,36 @@ favoritesLink.addEventListener("click", (event) => {
 });
 let hoveredCard = null;
 
+
 function handleCardHover(event) {
   const card = event.currentTarget;
-  if (hoveredCard !== card) {
-    // Remove "expanded" class from the previously hovered card (if any)
-    if (hoveredCard) {
+  if (event.type === "mouseenter") {
+    if (hoveredCard && hoveredCard !== card) {
       hoveredCard.classList.remove("expanded");
     }
-    // Add "expanded" class to the current hovered card
     card.classList.add("expanded");
     hoveredCard = card;
+  } else if (event.type === "mouseleave") {
+    card.classList.remove("expanded");
   }
 }
+
+function handleCartIconClick(item) {
+  const cartItems = JSON.parse(localStorage.getItem("cardItems")) || [];
+
+  const existingItem = cartItems.find((cartItem) => cartItem.id === item.id);
+
+  if (existingItem) {
+    console.log("Product is already in the cart.");
+  } else {
+    cartItems.push(item);
+
+    localStorage.setItem("cardItems", JSON.stringify(cartItems));
+
+    console.log("Product added to cart:", item);
+  }
+}
+
+
+
+
