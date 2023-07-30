@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <form id="registrationForm">
+            <h1>Register</h1>
+            <div class="input-group">
+                <input type="text" id="fullName" name="fullName" required>
+                <label for="fullName">Full Name</label>
+                <div class="validation-message" id="fullNameError"></div>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" name="email" required>
+                <label for="email">Email</label>
+                <div class="validation-message" id="emailError"></div>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+                <div class="validation-message" id="passwordError"></div>
+            </div>
+            <div class="input-group">
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                <label for="phoneNumber">Phone Number</label>
+                <div class="validation-message" id="phoneNumberError"></div>
+            </div>
+            <button class="registerButton" type="button">Register</button>
+        </form>
+    </div>
+    <script src="./JS/script.js"></script>
+</body>
+</html>
