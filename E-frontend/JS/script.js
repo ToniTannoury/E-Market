@@ -38,12 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(data.user){
       window.location.href = "landingPage.html"
     }
-        // console.log(response)
-        //   const data = await response.json();
-        //   console.log(data);
-          // if(data.customer){
-          //   window.location.href = 'login.html';   
-          // }
+        
       } catch (error) {
         console.log(error)
       }

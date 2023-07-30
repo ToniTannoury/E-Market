@@ -1,0 +1,85 @@
+  /* Add your custom styles here */
+  body {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  nav {
+    background: linear-gradient(135deg, #56CCF2, #2F80ED); 
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  nav a {
+    margin-left: 10px;
+    color: #ECCC13;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  nav a:hover {
+    color: #efd646;
+  }
+  .cart{
+    color: white;
+    padding: 5px;
+    border-right:solid white;
+    height: 20px;
+  }
+
+  .nav-left{
+    display: flex;
+    gap: 8px;
+  }
+  .nav-right{
+    display: flex;
+    gap: 8px;
+  }
+
+  .mid{
+    border: solid ;
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, #56CCF2, #2F80ED); 
+    color: rgb(237, 229, 229);
+    cursor: pointer;
+
+  }
+  .mid:hover{
+    border: solid ;
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, #34758b, #2F80ED); 
+    color: rgb(237, 229, 229);
+    cursor: pointer;
+    
+
+  }
+
+  .browse{
+    display: flex;
+    width:100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+   
+  }
+  .mid-container{
+    display: flex;
+    width: 50%;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+
+  }
+
+  .card-text{
+    /* display: none; */
+  }
