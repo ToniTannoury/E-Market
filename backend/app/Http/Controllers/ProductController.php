@@ -25,7 +25,7 @@ class ProductController extends Controller
 
         $products = Product::where($filterItems);
 
-        return response()->json(new ProductsCollection($products->paginate()->appends($request->query())->load('user')));
+        return response()->json(($products->paginate()->appends($request->query())->load('user')));
     }
 
     /**

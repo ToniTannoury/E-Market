@@ -34,3 +34,66 @@
     display: flex;
     gap: 8px;
   }
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .image-section {
+    height: 200px;
+    background-color: #f1f1f1;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-section img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  .info-section {
+    margin-top: 10px;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .description {
+    margin-top: 5px;
+    color: #666;
+  }
+
+  .amount {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #00aaff;
+  }
+
+  .cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 6%;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .pagination button {
+    margin: 5px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+  }
