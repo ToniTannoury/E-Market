@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\UserController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
@@ -12,5 +13,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
     Route::apiResource("products" , ProductController::class);
     Route::apiResource("favorites" , FavoriteController::class);
+    Route::apiResource("users" , UserController::class);
+
 
 });

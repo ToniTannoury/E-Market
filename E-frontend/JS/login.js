@@ -30,7 +30,7 @@ const handleLogin =async ()=>{
   console.log(data.authorization)
   if(data.authorization){
     console.log(11)
-    localStorage.setItem("token" , data.authorization.token)
+    localStorage.setItem("token" ,data.authorization.token)
     window.location.href = 'landingPage.html'
     console.log(12)
   }
