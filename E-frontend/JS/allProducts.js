@@ -33,4 +33,4 @@ dataArray.forEach((item) => {
 
     cardsContainer.appendChild(card);
 });
-document.getElementById("prev-btn").addEventListener("click" , )
+// document.getElementById("prev-btn").addEventListener("click" , )
