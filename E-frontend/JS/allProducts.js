@@ -18,6 +18,9 @@ if (decodedToken) {
   const userId = decodedToken.sub;
 
   dataArray.forEach((item) => {
+    const cardContainer = document.createElement("div");
+    cardContainer.classList.add("cardContainer"); // Add class for the container
+
     const card = document.createElement("div");
     card.classList.add("card");
 
@@ -53,7 +56,13 @@ if (decodedToken) {
     infoSection.appendChild(starIcon);
 
     card.appendChild(infoSection);
-    cardsContainer.appendChild(card);
+    card.addEventListener("mouseenter", handleCardHover); 
+  card.addEventListener("mouseleave", handleCardHover); 
+
+
+   
+  cardContainer.appendChild(card);
+  cardsContainer.appendChild(cardContainer);
   });
 } else {
   console.log('Invalid JWT token');
@@ -63,7 +72,7 @@ function handleStarClick(userId, productId, starIcon) {
   console.log("User ID:", userId);
   console.log("Product ID:", productId);
 
-  // Send the POST request to add the product to favorites
+ 
   fetch("http://127.0.0.1:8000/api/favorites", {
     method: "POST",
     headers: {
@@ -105,7 +114,7 @@ favoritesLink.addEventListener("click", (event) => {
     const url = `http://127.0.0.1:8000/api/users/${userId}?includeFavorites=true`;
     const token = localStorage.getItem("token");
 
-    // Fetch data using the updated URL
+
     fetch(url, {
       headers: {
         Authorization: 'Bearer ' + `${token}`
@@ -116,10 +125,10 @@ favoritesLink.addEventListener("click", (event) => {
         return response.json()
       })
       .then((data) => {
-        // Store the favorites data in local storage
+      
         localStorage.setItem("favorites", JSON.stringify(data.favorite_products));
         window.location.href = 'favorites.html'
-        // Process the response data here, such as updating the UI with the favorites data
+      
         console.log("Favorites Data:", data);
       })
       .catch((error) => {
@@ -129,3 +138,17 @@ favoritesLink.addEventListener("click", (event) => {
     console.log("Invalid JWT token");
   }
 });
+let hoveredCard = null;
+
+function handleCardHover(event) {
+  const card = event.currentTarget;
+  if (hoveredCard !== card) {
+    // Remove "expanded" class from the previously hovered card (if any)
+    if (hoveredCard) {
+      hoveredCard.classList.remove("expanded");
+    }
+    // Add "expanded" class to the current hovered card
+    card.classList.add("expanded");
+    hoveredCard = card;
+  }
+}

@@ -58,6 +58,7 @@
   }
 
   .info-section {
+    position: inherit;
     margin-top: 10px;
   }
 
@@ -99,4 +100,14 @@
   }
   .favorite {
     color: yellow;
+  }
+  .card .info-section {
+    display: none;
+  }
+  
+  .card.expanded .info-section {
+    display: block;
+  }
+  .card {
+    position: relative;
   }
