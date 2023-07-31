@@ -45,6 +45,7 @@
     background: linear-gradient(135deg, #56CCF2, #2F80ED); 
     color: rgb(237, 229, 229);
     cursor: pointer;
+    border-radius: 40px;
 
   }
   .mid:hover{

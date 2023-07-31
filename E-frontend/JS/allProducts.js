@@ -16,7 +16,6 @@ function decodeJWT(token) {
 const decodedToken = decodeJWT(token);
 if (decodedToken) {
   const userId = decodedToken.sub;
-
   dataArray.forEach((item) => {
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("cardContainer"); 
@@ -189,3 +188,83 @@ if (userType && (userType === "C" || userType === "c")) {
 
 }
 
+const fetchProducts = async (currPage) => {
+  const token = localStorage.getItem("token");
+
+  const response = await fetch(`http://127.0.0.1:8000/api/products?page=${currPage}`, {
+    method: "GET",
+    headers: {
+      "Authorization": "Bearer " + `${token}`,
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    }
+  });
+  const data = await response.json();
+  return data;
+};
+
+
+
+const prevBtn = document.getElementById("prev-btn")
+const nextBtn = document.getElementById("next-btn")
+
+
+const fetchProductsCount  = async()=>{
+  const token  = localStorage.getItem("token")
+  const response =  await fetch("http://127.0.0.1:8000/api/products?count=true" , {
+    method:"GET",
+    headers:{
+      Authorization:`Bearer ${token}`
+    }
+  })
+  const data = await response.json()
+  console.log(data)
+  return data.total
+}
+nextBtn.addEventListener("click", async () => {
+  let currentPage = parseInt(localStorage.getItem("currPage")) || 1;
+
+  currentPage++;
+  console.log(22);
+
+  const prods = await fetchProducts(currentPage);
+
+  console.log(prods.length);
+  localStorage.setItem("products", JSON.stringify(prods));
+  localStorage.setItem("currPage", currentPage);
+  updatePaginationButtons(); 
+});
+
+prevBtn.addEventListener("click", async () => {
+  let currentPage = parseInt(localStorage.getItem("currPage")) || 1;
+
+  if (currentPage > 1) {
+    currentPage--;
+    const prods = await fetchProducts(currentPage);
+    localStorage.setItem("products", JSON.stringify(prods));
+
+    localStorage.setItem("currPage", currentPage);
+
+    updatePaginationButtons();
+  }
+});
+
+
+
+function updatePaginationButtons() {
+  
+  let currentPage = parseInt(localStorage.getItem("currPage")) || 1;
+  const prods = JSON.parse(localStorage.getItem("products"));
+  console.log(prods)
+  prevBtn.disabled = currentPage === 1;
+
+  
+  if (prods.length===0 || prods.length<15){
+    nextBtn.disabled = true
+  }else{
+    nextBtn.disabled = false
+  }
+}
+
+
+updatePaginationButtons()

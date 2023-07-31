@@ -14,6 +14,20 @@ const fetchProducts = async () => {
   return data;
 };
 
+
+const fetchProductsCount  = async()=>{
+  const token  = localStorage.getItem("token")
+  const response =  await fetch("http://127.0.0.1:8000/api/products?count=true" , {
+    method:"GET",
+    headers:{
+      Authorization:`Bearer ${token}`
+    }
+  })
+  const data = await response.json()
+  console.log(data)
+  return data
+}
+
 const userType = localStorage.getItem("userType")
 console.log(userType)
 console.log(11)
@@ -38,6 +52,7 @@ displayedProducts.addEventListener('click', async () => {
 
   const prods = await fetchProducts();
   localStorage.setItem("products", JSON.stringify(prods));
+  localStorage.setItem("currPage", "1");
   window.location.href = "allProducts.html";
 });
 

@@ -24,6 +24,10 @@ class ProductController extends Controller
         $filterItems = $filter->transform($request);
 
         $products = Product::where($filterItems);
+        if ($request->query('count') === 'true') {
+            $totalCount = $products->count();
+            return response()->json(['total' => $totalCount]);
+        }
 
         return response()->json(($products->paginate()->appends($request->query())->load('user')));
     }
