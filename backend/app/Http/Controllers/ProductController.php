@@ -45,17 +45,35 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-
         $productTitle = $request->input('title');
-
         $existingProduct = Product::where('title', $productTitle)->first();
-
+    
         if ($existingProduct) {
             return response()->json(['message' => 'Product with the same title already exists'], 409);
         }
-
+    
+        if ($request->hasFile('image')) {
+            $uploadedFile = $request->file('image');
+            $name = $uploadedFile->getClientOriginalName();
+    
+            // Move the uploaded file to the public/images directory
+            $uploadedFile->move(public_path('images'), $name);
+    
+            // Create the product with the image path
+            $product = Product::create([
+                'title' => $request->title,
+                'description' => $request->description,
+                'amount' => $request->amount,
+                'user_id' => $request->user_id,
+                'image' => $name, // Store the image link if available
+            ]);
+    
+            return response()->json(['product' => $product]);
+        }
+    
+        // If no image was uploaded, create the product without an image
         $product = Product::create($request->all());
-
+    
         return response()->json([
             'message' => "Product successfully created",
             'product' => new ProductResource($product),
@@ -101,4 +119,7 @@ class ProductController extends Controller
 
         return response()->json(['message' => 'Product Deleted'], 200);
     }
+
+
+
 }
