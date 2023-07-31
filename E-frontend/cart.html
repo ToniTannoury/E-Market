@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/allProducts.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <div>
+        <i  class="cart fas fa-shopping-cart"></i>
+        <a class="shoppingCart-link" href="#">Shopping Cart</a>
+      </div>
+      <div>
+        <i class="cart fas fa-star"></i>
+        <a class="favorites-link" href="#">Favorites</a>
+      </div>
+      <div>
+        <i class="cart fas fa-shop"></i>
+        <a class="yourProducts-link" href="#">Your Poducts</a>
+      </div>
+      
+    </div>
+  <div class="nav-right">
+    <div>
+      <i class="cart fas fa-store"></i>
+      <a class="market" href="#">E-Market</a>
+    </div>
+    <div>
+      <i class="cart fas fa-user"></i>
+      <a class="profile-link" href="#">Profile</a>
+    </div>
+  </div>
+  </nav>
+  <div class="cards-container" id="cartItemsContainer">
+    <!-- Cart items will be dynamically added here -->
+  </div>
+  <script src="./JS/cart.js" defer></script>
+  <script src="./JS/nav.js" defer></script>
+</body>
+</html>

@@ -1,8 +1,8 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   const registrationButton = document.querySelector('.registerButton');
   console.log(registrationButton)
   registrationButton.addEventListener('click', async () => {
-    console.log(2)
       const fullName = document.getElementById('fullName').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
           phone_number: +phoneNumber,
           type:"C"
       };
-      console.log(formData)
       try {
         const apple = await fetch("http://127.0.0.1:8000/api/register" , {
       method:"POST",
@@ -34,9 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     console.log(apple)
     const data = await apple.json()
-    console.log(data.user)
+   
     if(data.user){
-      window.location.href = "landingPage.html"
+      console.log(22)
+      window.location.href = "login.html"
     }
         
       } catch (error) {

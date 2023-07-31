@@ -6,6 +6,7 @@ const token = localStorage.getItem("token");
 function decodeJWT(token) {
   try {
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
+    console.log(decodedToken)
     return decodedToken;
   } catch (error) {
     console.error('Error decoding JWT:', error);

@@ -17,3 +17,5 @@ Route::controller(AuthController::class)->group(function () {
 
 
 });
+
+Route::get("/user" , [UserController::class , "show"]);
