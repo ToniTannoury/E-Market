@@ -28,14 +28,16 @@ class UpdateProductRequest extends FormRequest
                 'name' => ['required'],
                 'title' => ['required'],
                 'description' => ['required'],
-                'amount' => ['required']
+                'amount' => ['required'],
+                'image' => ['required'],
             ];
         }else{
             return [
                 'name' => ['sometimes', 'required'],
                 'title' => ['sometimes','required'],
                 'description' => ['sometimes','required'],
-                'amount' => ['sometimes','required']
+                'amount' => ['sometimes','required'],
+                'image' => ['sometimes','required']
             ];
         }
     }

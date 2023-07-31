@@ -74,7 +74,7 @@ dataArray.forEach((item) => {
   const imageSection = document.createElement("div");
   imageSection.classList.add("image-section");
   const image = document.createElement("img");
-  image.src = item.image;
+  image.src = `../../backend/public/images/${item.image}`;
   imageSection.appendChild(image);
   card.appendChild(imageSection);
 
