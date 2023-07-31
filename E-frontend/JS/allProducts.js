@@ -6,7 +6,6 @@ const token = localStorage.getItem("token");
 function decodeJWT(token) {
   try {
     const decodedToken = JSON.parse(atob(token.split('.')[1]));
-    console.log(decodedToken)
     return decodedToken;
   } catch (error) {
     console.error('Error decoding JWT:', error);
@@ -78,10 +77,7 @@ if (decodedToken) {
 }
 
 function handleStarClick(userId, productId, starIcon) {
-  console.log("User ID:", userId);
-  console.log("Product ID:", productId);
 
- 
   fetch("http://127.0.0.1:8000/api/favorites", {
     method: "POST",
     headers: {
@@ -95,7 +91,7 @@ function handleStarClick(userId, productId, starIcon) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Response:", data);
+      
 
       if (data.message === 'Product added to favorites') {
 
@@ -110,43 +106,44 @@ function handleStarClick(userId, productId, starIcon) {
     });
 }
 const favoritesLink = document.querySelector(".favorites-link");
-
+  console.log(favoritesLink)
 favoritesLink.addEventListener("click", (event) => {
   event.preventDefault();
 
   const token = localStorage.getItem("token");
   const decodedToken = decodeJWT(token);
-
+  console.log(decodedToken)
   if (decodedToken) {
-    console.log(111)
+  
     const userId = decodedToken.sub;
-    const url = `http://127.0.0.1:8000/api/users/${userId}?includeFavorites=true`;
-    const token = localStorage.getItem("token");
-
-
-    fetch(url, {
-      headers: {
-        Authorization: 'Bearer ' + `${token}`
-      },
-    })
-      .then((response) => {
+    
+    
+    console.log("http://127.0.0.1:8000/api/users/${userId}?includeFavorites=true")
+    fetch(`http://127.0.0.1:8000/api/users/${userId}?includeFavorites=true`).then((response) => {
+        console.log(111222)
         console.log(response)
+        console.log(222)
         return response.json()
       })
       .then((data) => {
-      
+      console.log(data)
+      console.log(userId)
         localStorage.setItem("favorites", JSON.stringify(data.favorite_products));
+        console.log(11111111111111)
         window.location.href = 'favorites.html'
       
         console.log("Favorites Data:", data);
       })
       .catch((error) => {
+        console.log(11)
         console.error("Error:", error);
       });
   } else {
     console.log("Invalid JWT token");
   }
 });
+
+
 let hoveredCard = null;
 
 
@@ -180,5 +177,15 @@ function handleCartIconClick(item) {
 }
 
 
+const userType = localStorage.getItem("userType")
+console.log(userType)
+console.log(11)
+if (userType && (userType === "C" || userType === "c")) {
+  const yourProductsLink = document.getElementById("yourProducts-link");
+  console.log(yourProductsLink)
+  if (yourProductsLink) {
+    yourProductsLink.style.display = "none";
+  }
 
+}
 

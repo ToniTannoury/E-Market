@@ -30,13 +30,13 @@ class AuthController extends Controller
             ],401);
         }
         error_log(1);
-
+        
         return  response()->json([
             'authorization' => [
                 'token' => $token,
-                'type' => 'bearer',
+                'user' =>Auth::user(),
             ]
-        ],200);
+        ]);
     }
 
     public function register(Request $request)

@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "cart.html";
   });
 
-  favoritesLink.addEventListener("click", () => {
-    window.location.href = "favorites.html";
-  });
+  // favoritesLink.addEventListener("click", () => {
+  //   window.location.href = "favorites.html";
+  // });
 
   yourProductsLink.addEventListener("click", () => {
     window.location.href = "yourProducts.html";
