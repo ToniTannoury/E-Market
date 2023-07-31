@@ -129,3 +129,5 @@ function displayErrorMessage(message) {
   const errorDiv = document.getElementById("error-message");
   errorDiv.textContent = message;
 }
+
+

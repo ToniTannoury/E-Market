@@ -3,15 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="./styles/allProducts.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .container{
+      display: flex;
+      width: 100%;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .midSection {
+      width: 26%;
+      height: 100vh;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    textarea {
+      resize: vertical;
+    }
+    
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+  </style>
 </head>
 <body>
-  <input class="name" type="text" value="" placeholder="name">
-  <input class="email" type="text" value="" placeholder="email">
-  <input class="password" type="text" value="" placeholder="password">
-  <input class="phone_number" type="text" value="" placeholder="phone_number"> 
-  <input class="button" type="button" value="Click">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <nav>
+    <div class="nav-left">
+      <div>
+        <i  class="cart fas fa-shopping-cart"></i>
+        <a class="shoppingCart-link" href="#">Shopping Cart</a>
+      </div>
+      <div>
+        <i class="cart fas fa-star"></i>
+        <a class="favorites-link" href="#">Favorites</a>
+      </div>
+      <div id="yourProducts-link">
+        <i class="cart fas fa-shop"></i>
+        <a class="yourProducts-link" href="#">Your Poducts</a>
+      </div>
+      
+    </div>
+  <div class="nav-right">
+    <div>
+      <i class="cart fas fa-store"></i>
+      <a class="market" href="#">E-Market</a>
+    </div>
+    <div>
+      <i class="cart fas fa-user"></i>
+      <a class="profile-link" href="#">Profile</a>
+    </div>
+  </div>
+  </nav>
+  <div class="container">
+  <div class="midSection">
+    <h1>Create a New Product</h1>
+
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea name="description" id="description" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="amount">Amount:</label>
+      <input type="number" name="amount" id="amount" step="0.01" required>
+    </div>
+    <div class="form-group">
+      <label for="image">Image:</label>
+      <input type="file" name="image" id="image" required>
+    </div>
+    <div class="form-group">
+      <label for="user_id">user_id:</label>
+      <input type="number" name="image" id="user_id" required>
+    </div>
+    <button id="button" type="button">Create Product</button>
+
+  </div>
+
+  <div class="cards-container">
+
+  </div>
+</div>
+
+
   <script src="./JS/test.js"></script>
 </body>
 </html>

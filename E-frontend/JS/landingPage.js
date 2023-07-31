@@ -20,7 +20,7 @@ const fetchProductsCount  = async()=>{
   const response =  await fetch("http://127.0.0.1:8000/api/products?count=true" , {
     method:"GET",
     headers:{
-      Authorization:`Bearer ${token}`
+      "Authorization":`Bearer ${token}`
     }
   })
   const data = await response.json()
@@ -55,4 +55,20 @@ displayedProducts.addEventListener('click', async () => {
   localStorage.setItem("currPage", "1");
   window.location.href = "allProducts.html";
 });
+
+document.querySelector(".yourProducts-link").addEventListener("click" ,async ()=>{
+  const id = +localStorage.getItem("userId")
+  const token  = localStorage.getItem("token")
+  const response  = await fetch(`http://127.0.0.1:8000/api/users/${id}?includeProducts=true` , {
+    method:'GET',
+    headers:{
+    "Authorization" : `Bearer ${token}`,
+ 
+    }
+  })
+  const data = await response.json()
+  localStorage.setItem("userProducts" , JSON.stringify(data))
+  
+  window.location.href = 'test.html'
+})
 

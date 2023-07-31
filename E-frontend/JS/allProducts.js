@@ -26,7 +26,7 @@ if (decodedToken) {
     const imageSection = document.createElement("div");
     imageSection.classList.add("image-section");
     const image = document.createElement("img");
-    image.src = "placeholder.jpg";
+    image.src = item.image 
     imageSection.appendChild(image);
     card.appendChild(imageSection);
 
@@ -57,6 +57,7 @@ if (decodedToken) {
     const cartIcon = document.createElement("i");
   cartIcon.classList.add("fas", "fa-shopping-cart");
   cartIcon.setAttribute("data-product-id", item.id);
+  
   cartIcon.addEventListener("click", () => handleCartIconClick(item));
 
   
@@ -81,7 +82,7 @@ function handleStarClick(userId, productId, starIcon) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      "Authorization": `Bearer ${token}`,
     },
     body: JSON.stringify({
       user_id: userId,
@@ -214,7 +215,7 @@ const fetchProductsCount  = async()=>{
   const response =  await fetch("http://127.0.0.1:8000/api/products?count=true" , {
     method:"GET",
     headers:{
-      Authorization:`Bearer ${token}`
+      "Authorization":`Bearer ${token}`
     }
   })
   const data = await response.json()

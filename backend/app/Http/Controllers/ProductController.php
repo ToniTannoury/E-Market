@@ -18,12 +18,14 @@ class ProductController extends Controller
     }
 
     public function index(Request $request)
-    {
+    {error_log(0);
         $filter = new ProductsFilter;
-        
+        error_log(1);
         $filterItems = $filter->transform($request);
-
+        error_log(2);
         $products = Product::where($filterItems);
+        error_log(3);
+        error_log($products[0]->title);
         if ($request->query('count') === 'true') {
             $totalCount = $products->count();
             return response()->json(['total' => $totalCount]);

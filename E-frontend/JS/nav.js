@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
   //   window.location.href = "favorites.html";
   // });
 
-  yourProductsLink.addEventListener("click", () => {
-    window.location.href = "yourProducts.html";
-  });
+  // yourProductsLink.addEventListener("click", () => {
+  //   window.location.href = "test.html";
+  // });
 
   marketLink.addEventListener("click", () => {
     window.location.href = "allProducts.html";
