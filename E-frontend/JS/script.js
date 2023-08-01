@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const registrationButton = document.querySelector('.registerButton');
   console.log(registrationButton)
-  registrationButton.addEventListener('click', async () => {
+  registrationButton.addEventListener('click',  () => {
       const fullName = document.getElementById('fullName').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
           type:"C"
       };
       try {
-        const apple = await fetch("http://127.0.0.1:8000/api/register" , {
+        fetch("http://127.0.0.1:8000/api/register" , {
       method:"POST",
       headers:{
         "Content-Type" : "application/json",
@@ -30,14 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
         type:"C",
         
     })
+    }).then(res=> res.json())
+    .then(data=>{
+      if(data.user){
+        console.log(22)
+        window.location.href = "login.html"
+      }else{
+        console.log(data)
+      }
     })
-    console.log(apple)
-    const data = await apple.json()
-   
-    if(data.user){
-      console.log(22)
-      window.location.href = "login.html"
-    }
+    
         
       } catch (error) {
         console.log(error)

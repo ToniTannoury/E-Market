@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,8 +21,6 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
-        'phone_number',
-        'type',
     ];
 
     /**
@@ -45,7 +42,7 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    /**
+     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed
@@ -64,12 +61,12 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
     public function products(){
         return $this->hasMany(Product::class);
     }
     public function favoriteProducts()
     {
-        return $this->belongsToMany(Product::class, 'favorites', 'user_id', 'product_id')->withTimestamps();
+        return $this->belongsToMany(Product::class, 'favorites')->withTimestamps();
     }
 }
+

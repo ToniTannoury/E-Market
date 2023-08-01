@@ -112,3 +112,12 @@
   .card {
     position: relative;
   }
+
+  #deleteButton{
+    background-color: red;
+  }
+  #modifyButton{
+    margin: 20px 0;
+
+    background-color: green;
+  }

@@ -1,5 +1,24 @@
+document.addEventListener("DOMContentLoaded" ,async ()=>{
+  const bearerToken  =localStorage.getItem("token")
+  const currPage  =localStorage.getItem("currPage")
+  const fetchProducts = async (currPage) => {
+    const token = localStorage.getItem("token");
+  
+    const response = await fetch(`http://127.0.0.1:8000/api/products?page=${currPage}`, {
+      method: "GET",
+      headers: {
+        "Authorization": "Bearer " + `${token}`,
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      }
+    });
+    const data = await response.json();
+    return data;
+  };
+  const dataArray = await fetchProducts(currPage)
+ 
+
 const cardsContainer = document.querySelector(".cards-container");
-const dataArray = JSON.parse(localStorage.getItem("products"));
 console.log(dataArray)
 const token = localStorage.getItem("token");
 
@@ -83,6 +102,7 @@ function handleStarClick(userId, productId, starIcon) {
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${token}`,
+      "Accept" : "application/json"
     },
     body: JSON.stringify({
       user_id: userId,
@@ -119,7 +139,11 @@ favoritesLink.addEventListener("click", (event) => {
     
     
     console.log("http://127.0.0.1:8000/api/users/${userId}?includeFavorites=true")
-    fetch(`http://127.0.0.1:8000/api/users/${userId}?includeFavorites=true`).then((response) => {
+    fetch(`http://127.0.0.1:8000/api/users/${userId}?includeFavorites=true` , {
+      headers:{
+        "Accept" : "application/json"
+      }
+    }).then((response) => {
         console.log(111222)
         console.log(response)
         console.log(222)
@@ -189,20 +213,7 @@ if (userType && (userType === "C" || userType === "c")) {
 
 }
 
-const fetchProducts = async (currPage) => {
-  const token = localStorage.getItem("token");
 
-  const response = await fetch(`http://127.0.0.1:8000/api/products?page=${currPage}`, {
-    method: "GET",
-    headers: {
-      "Authorization": "Bearer " + `${token}`,
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    }
-  });
-  const data = await response.json();
-  return data;
-};
 
 
 
@@ -210,18 +221,7 @@ const prevBtn = document.getElementById("prev-btn")
 const nextBtn = document.getElementById("next-btn")
 
 
-const fetchProductsCount  = async()=>{
-  const token  = localStorage.getItem("token")
-  const response =  await fetch("http://127.0.0.1:8000/api/products?count=true" , {
-    method:"GET",
-    headers:{
-      "Authorization":`Bearer ${token}`
-    }
-  })
-  const data = await response.json()
-  console.log(data)
-  return data.total
-}
+
 nextBtn.addEventListener("click", async () => {
   let currentPage = parseInt(localStorage.getItem("currPage")) || 1;
 
@@ -233,6 +233,7 @@ nextBtn.addEventListener("click", async () => {
   console.log(prods.length);
   localStorage.setItem("products", JSON.stringify(prods));
   localStorage.setItem("currPage", currentPage);
+  window.location.href = "allProducts.html"
   updatePaginationButtons(); 
 });
 
@@ -245,6 +246,8 @@ prevBtn.addEventListener("click", async () => {
     localStorage.setItem("products", JSON.stringify(prods));
 
     localStorage.setItem("currPage", currentPage);
+    
+    window.location.href = "allProducts.html"
 
     updatePaginationButtons();
   }
@@ -255,12 +258,10 @@ prevBtn.addEventListener("click", async () => {
 function updatePaginationButtons() {
   
   let currentPage = parseInt(localStorage.getItem("currPage")) || 1;
-  const prods = JSON.parse(localStorage.getItem("products"));
-  console.log(prods)
   prevBtn.disabled = currentPage === 1;
 
-  
-  if (prods.length===0 || prods.length<15){
+  console.log("============>",dataArray)
+  if (dataArray.length===0 || dataArray.length<15){
     nextBtn.disabled = true
   }else{
     nextBtn.disabled = false
@@ -269,3 +270,4 @@ function updatePaginationButtons() {
 
 
 updatePaginationButtons()
+})

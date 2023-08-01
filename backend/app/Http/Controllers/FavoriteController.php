@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ProductsFilter;
 use App\Models\Favorite;
 use App\Models\User;
 use App\Models\Product;
 use App\Http\Requests\StoreFavoriteRequest;
 use App\Http\Requests\UpdateFavoriteRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class FavoriteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user_id = $request->segment(3);
+        
+        $favorites = Favorite::where('user_id', $user_id)->get();
+        return response()->json($favorites);
+        
     }
 
     /**

@@ -9,19 +9,20 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "cart.html";
   });
 
-  // favoritesLink.addEventListener("click", () => {
-  //   window.location.href = "favorites.html";
-  // });
+  favoritesLink.addEventListener("click", () => {
+    window.location.href = "favorites.html";
+  });
 
-  // yourProductsLink.addEventListener("click", () => {
-  //   window.location.href = "test.html";
-  // });
+  yourProductsLink.addEventListener("click", () => {
+    window.location.href = "test.html";
+  });
 
   marketLink.addEventListener("click", () => {
     window.location.href = "allProducts.html";
   });
 
   profileLink.addEventListener("click", () => {
-    window.location.href = "profile.html";
+    localStorage.clear();
+    window.location.href = "login.html";
   });
 });

@@ -78,8 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const loginButton = document.querySelector(".loginButton");
   loginButton.addEventListener("click", async () => {
     try {
-      await handleLogin();
-      window.location.href = 'landingPage.html';
+      handleLogin().then(res=> window.location.href = 'landingPage.html');
+     ;
     } catch (error) {
       console.error("Error:", error);
     }
@@ -112,11 +112,11 @@ async function handleLogin() {
     const data = await response.json();
     console.log(data);
 
-    if (data.authorization) {
+    if (data.authorisation) {
       console.log(11);
-      localStorage.setItem("token", data.authorization.token);
-      localStorage.setItem("userType", data.authorization.user.type); // Store the user type directly from the response
-      localStorage.setItem("userId", data.authorization.user.id); // Store the user type directly from the response
+      localStorage.setItem("token", data.authorisation.token);
+      localStorage.setItem("userType", data.user.type); // Store the user type directly from the response
+      localStorage.setItem("userId", data.user.id); // Store the user type directly from the response
       console.log(12);
     }
   } catch (error) {

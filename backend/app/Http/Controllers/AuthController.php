@@ -1,45 +1,49 @@
 <?php
 
-namespace App\Http\Controllers\API;
 
-use App\Models\User;
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class AuthController extends Controller
 {
+
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login','store']]);
     }
 
     public function login(Request $request)
     {
-    
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
         $credentials = $request->only('email', 'password');
-        error_log($request->email);
-        error_log($request->password);
+
         $token = Auth::attempt($credentials);
-        error_log($token);
         if (!$token) {
             return response()->json([
+                'status' => 'error',
                 'message' => 'Unauthorized',
-            ],401);
+            ], 401);
         }
-        error_log(1);
-        
-        return  response()->json([
-            'authorization' => [
-                'token' => $token,
-                'user' =>Auth::user(),
-            ]
-        ]);
+
+        $user = Auth::user();
+        return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'authorisation' => [
+                    'token' => $token,
+                    'type' => 'bearer',
+                ]
+            ]);
+
     }
 
-    public function register(Request $request)
+    public function store(Request $request)
     {
         
         $user=new User;
@@ -61,12 +65,12 @@ class AuthController extends Controller
         ]);
         
     }
- 
 
     public function logout()
     {
         Auth::logout();
         return response()->json([
+            'status' => 'success',
             'message' => 'Successfully logged out',
         ]);
     }
@@ -74,6 +78,7 @@ class AuthController extends Controller
     public function refresh()
     {
         return response()->json([
+            'status' => 'success',
             'user' => Auth::user(),
             'authorisation' => [
                 'token' => Auth::refresh(),
@@ -81,4 +86,5 @@ class AuthController extends Controller
             ]
         ]);
     }
+
 }

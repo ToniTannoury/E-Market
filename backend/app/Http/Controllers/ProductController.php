@@ -103,9 +103,17 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->all());
-    }
+        error_log(print_r($request->all(), true));
+    error_log(11);
+    
 
+    // Update the product
+    $product->update($request->all());
+
+    // Log the updated product
+    error_log(2);
+    error_log(print_r($product->toArray(), true));
+    }
     /**
      * Remove the specified resource from storage.
      */
