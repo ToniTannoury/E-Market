@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const yourProductsLink = document.querySelector(".yourProducts-link");
   const marketLink = document.querySelector(".market");
   const profileLink = document.querySelector(".profile-link");
+  const homeLink = document.querySelector(".home-link");
 
   shoppingCartLink.addEventListener("click", () => {
     window.location.href = "cart.html";
@@ -24,5 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
   profileLink.addEventListener("click", () => {
     localStorage.clear();
     window.location.href = "login.html";
+  });
+
+  homeLink.addEventListener("click", () => {
+    window.location.href = "landingPage.html";
   });
 });

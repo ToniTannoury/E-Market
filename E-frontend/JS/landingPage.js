@@ -1,3 +1,13 @@
+const browseFavs = document.querySelector(".browse-favorites").addEventListener('click' , ()=>{
+  window.location.href = "favorites.html"
+})
+const browseYrProds = document.querySelector(".browse-your-products").addEventListener('click' , ()=>{
+  window.location.href = "test.html"
+})
+const browseCart = document.querySelector(".browse-shopping-cart").addEventListener('click' , ()=>{
+  window.location.href = "cart.html"
+})
+
 const fetchProducts = async () => {
   console.log(11);
   const token = localStorage.getItem("token");
@@ -29,8 +39,7 @@ const fetchProductsCount  = async()=>{
 }
 
 const userType = localStorage.getItem("userType")
-console.log(userType)
-console.log(11)
+
 if (userType && (userType === "C" || userType === "c")) {
   const yourProductsLink = document.getElementById("yourProducts-link");
   const browseYourProducts = document.querySelector(".browse-your-products");

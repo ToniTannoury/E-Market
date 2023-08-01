@@ -113,6 +113,21 @@
 
 
 
+  const userType = localStorage.getItem("userType")
+
+if (userType && (userType === "C" || userType === "c")) {
+  const yourProductsLink = document.getElementById("yourProducts-link");
+  const browseYourProducts = document.querySelector(".browse-your-products");
+
+  if (yourProductsLink) {
+    yourProductsLink.style.display = "none";
+  }
+
+  if (browseYourProducts) {
+    browseYourProducts.style.display = "none";
+  }
+}
+
 
 
 

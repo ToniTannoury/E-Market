@@ -40,7 +40,7 @@ const token = localStorage.getItem("token")
   const decodedToken = decodeJWT(token);
 if (decodedToken) {
   const userId = decodedToken.sub;
-  cartItems.forEach((item) => {
+  cartItems?.forEach((item) => {
     console.log(item)
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("cardContainer"); 
@@ -101,5 +101,22 @@ if (decodedToken) {
 } else {
   console.log('Invalid JWT token');
 }
+
+const userType = localStorage.getItem("userType")
+
+if (userType && (userType === "C" || userType === "c")) {
+  console.log("heer")
+  const yourProductsLink = document.getElementById("yourProducts-link");
+  const browseYourProducts = document.querySelector(".browse-your-products");
+
+  if (yourProductsLink) {
+    yourProductsLink.style.display = "none";
+  }
+
+  if (browseYourProducts) {
+    browseYourProducts.style.display = "none";
+  }
+}
+
 
 });
